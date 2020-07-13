@@ -1,0 +1,210 @@
+﻿@{
+    Layout = "_LayoutAdmin";
+
+
+}
+
+<div class="HeaderMS">
+    <h1 id="TitleAC">Update Brand</h1>
+</div>
+<div class="containerAS">
+    <form id="formAC">
+        <div class="row">
+            <div class="col-25">
+                <label for="brandName">Name</label>
+            </div>
+            <div class="col-100">
+                <input type="text" id="brandName" name="brandname" placeholder="Brand name..">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-25">
+                <label for="catName">Image</label>
+            </div>
+            <div class="col-100">
+                <input type="text" id="image" name="image" placeholder="This will be changed into file upload later..">
+            </div>
+        </div>
+
+        <div class="row" id="categoryBL">
+            <div class="col-25">
+                <label for="catName">Category</label>
+            </div>
+            <div class="col-100">
+                <div class="dropdown">
+                    <button class="dropBtn"></button>
+                    <div class="dropdown-content">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <input type="button" class="btn btn-primary" value="Soft Delete" id="SD" />
+        <input type="button" class="btn btn-primary" value="Hard Delete" id="HD" />
+        <input type="button" onclick="myFunction()" value="Save" id="saveButton" />
+    </form>
+</div>
+
+<script>
+    console.log("You're in scripts!")
+
+    const ID = getIdFromAddressBar();
+
+    console.log("Here's your ID ! " + ID)
+
+    getAllCat();
+    loadBrandData();
+
+
+    function getIdFromAddressBar() {
+        let urlArray = window.location.href.split('/');
+        let id = urlArray[urlArray.length - 1];
+        return id;
+    }
+
+    //This function is to retrieve all categories to be put inside the dropdown list
+    function getAllCat() {
+        // AJAX GET to output into table
+        $.ajax({
+            url: '/API/Category/GetAllCat',
+            method: 'GET'
+
+        }).done(function (data) {
+            let $tableBodyElement = $('.dropdown-content');
+
+            for (let index = 0; index < data.length; index++) {
+                let $rowElement = null;
+                let $cellElement = null;
+                let $hyperlinkElement = null;
+
+                $rowElement = $('<tr></tr>');
+
+                //Id
+                var catId = data[index].catId;
+                var catName = data[index].catName;
+                console.log(catName);
+
+                //<input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+                //    <label for="vehicle1"> I have a bike</label><br>
+
+                $cellElement = $('<td><input type="checkbox" id="' + catId + '" name="categories" value="' + catId + '"><label for="categories">' + catName + '</label><br></a></td>')
+                $rowElement.append($cellElement);
+                $tableBodyElement.append($rowElement);
+            }
+        }).fail(function (data) {
+            console.dir("HELLO" + data);
+            new Noty({
+                text: data.responseJSON.message, type: 'error',
+                layout: 'center',
+                timeout: 2500
+            }).show();
+        })
+    }
+
+    function loadBrandData() {
+        console.log("You're in Load Brand Data!");
+
+        $.ajax({
+            method: 'GET',
+            url: '/API/Brand/GetABrand/' + ID,
+        }).done(function (data) {
+            console.log(data)
+
+            let brand = data;
+            let brandName = brand.brandName;
+            let categories = brand.categories;
+
+            console.log("Here's your name! " + brandName);
+            console.log("Here's your categories! " + categories);
+
+            $('#brandName').val(brandName);
+            for (var i = 0; i < categories.length; i++)
+            {
+                document.getElementById(categories[i]).checked = true;
+            }
+        }).fail(function (data) {
+            console.log("You failed your ajax :D")
+            new noty({
+                text: data.responsejson.message,
+                type: 'error', layout: 'center',
+            }).show();
+        });//end of $ajax().done().fail();
+    }
+
+
+    function WebFormData(inCatName, inSelectCats) {
+        this.brandName = inCatName;
+        this.selectedCats = inSelectCats;
+    }
+
+    $('#saveButton').on('click', function () {
+        let collectedBrandName = $('#brandName').val();
+        var selectedCats = new Array();
+        $('input[name="categories"]:checked').each(function () {
+            selectedCats.push(this.value);
+        });
+
+        let webFormData = new WebFormData(collectedBrandName, selectedCats);
+
+        $.ajax({
+            method: 'PUT',
+            url: '/API/Brand/UpdateBrand/' + ID,
+            dataType: 'json',
+            contentType: 'application/x-www-form-urlencoded;',
+            data: webFormData
+        }).done(function (data) {
+            new Noty({
+                text: data.message,
+                type: 'success',
+                layout: 'center'
+            }).show();
+        }).fail(function (data) {
+            new Noty({
+                text: data.responseJSON.message,
+                type: 'error',
+                layout: 'center'
+            }).show();
+        });
+    });
+
+    //Soft Delete Category Record
+    $('#SD').on('click', function () {
+        $.ajax({
+            method: 'PUT',
+            url: '/API/Brand/SoftDelete/' + ID,
+        }).done(function (data) {
+            new Noty({
+                text: data.message,
+                type: 'success',
+                layout: 'center'
+            }).show();
+        }).fail(function (data) {
+            new Noty({
+                text: data.responseJSON.message,
+                type: 'error',
+                layout: 'center'
+            }).show();
+        });
+    });
+
+
+    //Hard Delete Category Record
+    $('#HD').on('click', function () {
+        $.ajax({
+            method: 'DELETE',
+            url: '/API/Brand/HardDelete/' + ID,
+        }).done(function (data) {
+            new Noty({
+                text: data.message,
+                type: 'success',
+                layout: 'center'
+            }).show();
+        }).fail(function (data) {
+            new Noty({
+                text: data.responseJSON.message,
+                type: 'error',
+                layout: 'center'
+            }).show();
+        });
+    });
+</script>
