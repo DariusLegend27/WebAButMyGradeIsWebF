@@ -21,5 +21,11 @@ namespace WebAAssign.Controllers
         {
             return View();
         }
+
+        // GET: /<controller>/
+        public IActionResult ProductList()
+        {
+            return View();
+        }
     }
 }
