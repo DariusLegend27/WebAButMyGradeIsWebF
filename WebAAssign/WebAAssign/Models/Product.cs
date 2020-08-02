@@ -11,17 +11,12 @@ namespace WebAAssign.Models
         //int variables
         [Key]
         public int prodId { get; set; }
+        public int? productDetailId { get; set; }
         public int brandId { get; set; }
         public int? published { get; set; }
         public int? minQty { get; set; }
         public int? prodQty { get; set; }
-        public int? prodUnit { get; set; }
         public int deleted { get; set; }
-
-        //Decimal variables
-        public decimal? prodWeight { get; set; }
-        public decimal? prodRRPrice { get; set; }
-        public decimal? prodTOPSPrice { get; set; }
 
         //DateTime Variables
         public DateTime createdAt { get; set; }
@@ -41,5 +36,7 @@ namespace WebAAssign.Models
 
         //Relations
         public Brand Brand { get; set; }
+        public List<productDiscountRate> productDiscountRates {get; set;}
+        public List<productDetail> productDetails { get; set; }
     }
 }

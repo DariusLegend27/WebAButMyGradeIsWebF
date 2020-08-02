@@ -16,6 +16,9 @@ namespace WebAAssign.Data
         public DbSet<Category> Categories { get; set; }
         public DbSet<CategoryBrand> CategoryBrands { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<discountRate> discountRates { get; set; }
+        public DbSet<productDetail> productDetails { get; set; }
+        public DbSet<productDiscountRate> productDiscountRates { get; set; }
         public DbSet<SysUser> SysUsers { get; set; }
         public DbSet<Visibility> Visibilities { get; set; }
 
@@ -52,9 +55,27 @@ namespace WebAAssign.Data
 
             // one-to-many relationship between Category and Visibility
             modelBuilder.Entity<Category>()
-               .HasOne(p => p.visibility)
-               .WithMany(b => b.categories)
-               .HasForeignKey(p => p.visId);
+               .HasOne(c => c.visibility)
+               .WithMany(v => v.categories)
+               .HasForeignKey(c => c.visId);
+
+            // one-to-many relationship between discountRate and productDiscountRate
+            modelBuilder.Entity<productDiscountRate>()
+               .HasOne(pdr => pdr.discountRate)
+               .WithMany(dr => dr.productDiscountRates)
+               .HasForeignKey(pdr => pdr.discountId);
+
+            // one-to-many relationship between Product and productDiscountRate
+            modelBuilder.Entity<productDiscountRate>()
+               .HasOne(pdr => pdr.Product)
+               .WithMany(dr => dr.productDiscountRates)
+               .HasForeignKey(pdr => pdr.prodId);
+
+            // one-to-many relationship between Product and productDetails
+            modelBuilder.Entity<productDetail>()
+               .HasOne(pd => pd.Product)
+               .WithMany(p => p.productDetails)
+               .HasForeignKey(pd => pd.productDetailId);
         }
     }
 }

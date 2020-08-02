@@ -49,10 +49,15 @@ namespace WebAAssign.APIs
                         prodDesc = prod.prodDesc,
                         prodImgUrl = prod.prodImgUrl,
                         prodIngredients = prod.prodIngredients,
+                        updatedBy = prod.updatedBy,
+                        createdBy = prod.createdBy,
+                        deletedBy = prod.deletedBy,
+                        updatedAt = prod.updatedAt,
+                        createdAt = prod.createdAt,
+                        deletedAt = prod.deletedAt,
                         prodName = prod.prodName,
+                        minQty = prod.minQty,
                         prodQty = prod.prodQty,
-                        prodPrice = prod.prodRRPrice,
-                        prodWeight = prod.prodWeight,
                         isPublished = prod.published
                     });
                 }

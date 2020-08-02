@@ -1,5 +1,217 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
+    Layout = "_LayoutProduct";
 }
+
+<div class="w-75 m-5">
+    <div class="row">
+    <div class="h1">Add Brand</div>
+    </div>
+    
+    <div class="row">
+        <div class="form-group w-100">
+            <div class="col-md-12">
+                <div class="text-center">
+                    <div class="">
+                        <div class="btn-group btn-group-lg bg-dark-3EB" data-toggle="buttons">
+                            <label class="btn btn-secondary active ">
+                                <input type="checkbox" data-toggle="collapse" data-target="#descInput" name="optInputs" id="rb1"> Description
+                            </label>
+                            <label class="btn btn-secondary">
+                                <input type="checkbox" data-toggle="collapse" data-target="#ingInput" name="optInputs" id="rb2"> Ingredients
+                            </label>
+                            <label class="btn btn-secondary">
+                                <input type="checkbox" data-toggle="collapse" data-target="#pubInput" name="optInputs" id="rb3"> Published
+                            </label>
+                            <label class="btn btn-secondary">
+                                <input type="checkbox" data-toggle="collapse" data-target="#qtyInput" name="optInputs" id="rb3"> Quantity
+                            </label>
+                            <label class="btn btn-secondary">
+                                <input type="checkbox" data-toggle="collapse" data-target="#GAInput" name="optInputs" id="rb3"> Guaranteed Analysis
+                            </label>
+                            <label class="btn btn-secondary">
+                                <input type="checkbox" data-toggle="collapse" data-target="#priceInput" name="optInputs" id="rb3"> Price
+                            </label>
+                            <label class="btn btn-secondary">
+                                <input type="checkbox" data-toggle="collapse" data-target="#discountInput" name="optInputs" id="rb3"> Discount
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <form id="staffInfoForm" class="w-100 m-5">
+            <div class="card card-body">
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group w-75">
+                            <label for="day">Day</label>
+                            <select class="form-control" id="day">
+                                <option value="Mon">Mon</option>
+                                <option value="Tues">Tues</option>
+                                <option value="Wed">Wed</option>
+                                <option value="Thur">Thur</option>
+                                <option value="Fri">Fri</option>
+                                <option value="Sat">Sat</option>
+                                <option value="Sun">Sun</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col" id="nameInput">
+                        <div class="form-group w-75 ">
+                            <label for="productName">Product Name</label>
+                            <input type="text" id="productName" class="form-control" name="productName" />
+                            <div class="invalid-feedback"></div>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="form-group w-75 ">
+                            <label for="productCode">Product Code</label>
+                            <input type="text" id="productCode" class="form-control" name="productCode" />
+                            <div class="invalid-feedback"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col collapse" id="priceInput">
+                        <div class="form-group w-75 ">
+                            <label for="productWA">Weight Amount</label>
+                            <input type="text" id="productWA" class="form-control" name="productWA" />
+                            <div class="invalid-feedback"></div>
+                        </div>
+                    </div>
+                    <div class="col collapse" id="priceInput">
+                        <div class="form-group w-75">
+                            <label for="productWU">Weight Unit</label>
+                            <select class="form-control" id="productWU">
+                                <option value=1>kg</option>
+                                <option value=2>g</option>
+                                <option value=2>lbs</option>
+                                <option value=2>L</option>
+                                <option value=2>ml</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col collapse" id="priceInput">
+                        <div class="form-group w-75 ">
+                            <label for="productPrice">Price</label>
+                            <input type="text" id="productPrice" class="form-control" name="productPrice" />
+                            <div class="invalid-feedback"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col collapse" id="pubInput">
+                        <div class="form-group w-75">
+                            <label for="published">Published</label>
+                            <select class="form-control" id="published">
+                                <option value=1>Yes</option>
+                                <option value=2>No</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col collapse" id="qtyInput">
+                        <div class="form-group w-100">
+                            <label for="productMinQty">Minimum Quantity</label>
+                            <input type="text" class="form-control" id="productMinQty" name="productMinQty">
+                            <div class="invalid-feedback"> </div>
+                        </div>
+                    </div>
+
+                    <div class="col collapse" id="qtyInput">
+                        <div class="form-group w-100">
+                            <label for="productQty">Quantity</label>
+                            <input type="text" class="form-control" id="productQty" name="productQty">
+                            <div class="invalid-feedback"> </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                            </div>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="inputGroupFile01"
+                                       aria-describedby="inputGroupFileAddon01">
+                                <label class="custom-file-label" for="inputGroupFile01">Choose picture</label>
+                            </div>
+                            <div class="invalid-feedback"> </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col collapse" id="discountInput">
+                        <div class="form-group w-75 ">
+                            <label for="discountName">Discount Name</label>
+                            <input type="text" id="discountName" class="form-control" name="discountName" />
+                            <div class="invalid-feedback"></div>
+                        </div>
+                    </div>
+                    <div class="col collapse" id="discountInput">
+                        <div class="form-group w-75 ">
+                            <label for="discountRate">Discount Rate</label>
+                            <input type="text" id="discountRate" class="form-control" name="discountRate" />
+                            <div class="invalid-feedback"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col collapse" id="descInput">
+                        <div class="form-group w-100">
+                            <label for="productDesc">Description</label>
+                            <input type="text" class="form-control" id="productDesc" name="productDesc">
+                            <div class="invalid-feedback"> </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col collapse" id="ingInput">
+                        <div class="form-group w-100">
+                            <label for="productIng">Ingredients</label>
+                            <input type="text" class="form-control" id="productIng" name="productIng">
+                            <div class="invalid-feedback"> </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col collapse" id="GAInput">
+                        <div class="form-group w-100">
+                            <label for="productGA">Guaranteed Analysis</label>
+                            <input type="text" class="form-control" id="productGA" name="productGA">
+                            <div class="invalid-feedback"> </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card card-footer text-center bg-dark">
+                <div class="row">
+                    <div class="col">
+                        <button class="btn btn-outline-primary w-50" data-toggle="collapse" data-target="#addModuleCollapse" type="button">
+                            Cancel
+                        </button>
+                    </div>
+                    <div class="col">
+                        <button class="btn btn-primary w-50" type="submit">
+                            Submit
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
