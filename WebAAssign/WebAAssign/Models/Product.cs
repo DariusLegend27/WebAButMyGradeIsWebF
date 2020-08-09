@@ -11,12 +11,11 @@ namespace WebAAssign.Models
         //int variables
         [Key]
         public int prodId { get; set; }
-        public int? productDetailId { get; set; }
         public int brandId { get; set; }
         public int? published { get; set; }
         public int? minQty { get; set; }
         public int? prodQty { get; set; }
-        public int deleted { get; set; }
+        public int? deleted { get; set; }
 
         //DateTime Variables
         public DateTime createdAt { get; set; }

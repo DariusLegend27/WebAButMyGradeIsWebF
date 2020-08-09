@@ -4,9 +4,9 @@
 
 <div class="w-75 m-5">
     <div class="row">
-    <div class="h1">Add Brand</div>
+        <div class="h1">Add Brand</div>
     </div>
-    
+
     <div class="row">
         <div class="form-group w-100">
             <div class="col-md-12">
@@ -42,24 +42,15 @@
     </div>
 
     <div class="row">
-        <form id="staffInfoForm" class="w-100 m-5">
+        <form id="productForm" class="w-100 m-5">
             <div class="card card-body">
                 <div class="row">
                     <div class="col">
                         <div class="form-group w-75">
-                            <label for="day">Day</label>
-                            <select class="form-control" id="day">
-                                <option value="Mon">Mon</option>
-                                <option value="Tues">Tues</option>
-                                <option value="Wed">Wed</option>
-                                <option value="Thur">Thur</option>
-                                <option value="Fri">Fri</option>
-                                <option value="Sat">Sat</option>
-                                <option value="Sun">Sun</option>
-                            </select>
+                            <label for="brandId">Brand</label>
+                            <select class="form-control" id="brandId"></select>
                         </div>
                     </div>
-
                     <div class="col" id="nameInput">
                         <div class="form-group w-75 ">
                             <label for="productName">Product Name</label>
@@ -89,21 +80,24 @@
                         <div class="form-group w-75">
                             <label for="productWU">Weight Unit</label>
                             <select class="form-control" id="productWU">
-                                <option value=1>kg</option>
-                                <option value=2>g</option>
-                                <option value=2>lbs</option>
-                                <option value=2>L</option>
-                                <option value=2>ml</option>
+                                <option value=kg>kg</option>
+                                <option value=g>g</option>
+                                <option value=lbs>lbs</option>
+                                <option value=L>L</option>
+                                <option value=ml>ml</option>
                             </select>
                         </div>
                     </div>
                     <div class="col collapse" id="priceInput">
                         <div class="form-group w-75 ">
                             <label for="productPrice">Price</label>
-                            <input type="text" id="productPrice" class="form-control" name="productPrice" />
+                            <input type="text" id="productPrice" class="form-control " name="productPrice" />
                             <div class="invalid-feedback"></div>
                         </div>
                     </div>
+                    @*<div class="col collapse" id="priceInput">
+                            <button type="button" class="btn btn-info btn-group-lg productPrice" onclick="">Add</button>
+                        </div>*@
                 </div>
 
                 <div class="row">
@@ -171,7 +165,7 @@
                     <div class="col collapse" id="descInput">
                         <div class="form-group w-100">
                             <label for="productDesc">Description</label>
-                            <input type="text" class="form-control" id="productDesc" name="productDesc">
+                            <textarea class="form-control" id="productDesc" name="productDesc" rows="3"></textarea>
                             <div class="invalid-feedback"> </div>
                         </div>
                     </div>
@@ -181,7 +175,7 @@
                     <div class="col collapse" id="ingInput">
                         <div class="form-group w-100">
                             <label for="productIng">Ingredients</label>
-                            <input type="text" class="form-control" id="productIng" name="productIng">
+                            <textarea class="form-control" id="productIng" name="productIng" rows="3"></textarea>
                             <div class="invalid-feedback"> </div>
                         </div>
                     </div>
@@ -191,7 +185,7 @@
                     <div class="col collapse" id="GAInput">
                         <div class="form-group w-100">
                             <label for="productGA">Guaranteed Analysis</label>
-                            <input type="text" class="form-control" id="productGA" name="productGA">
+                            <textarea class="form-control" id="productGA" name="productGA" rows="3"></textarea>
                             <div class="invalid-feedback"> </div>
                         </div>
                     </div>
@@ -215,3 +209,211 @@
         </form>
     </div>
 </div>
+
+<script>
+
+    //Setting default validate message
+    jQuery.validator.setDefaults({
+        errorElement: 'div',
+        errorClass: 'is-invalid'
+    });
+
+
+    //Upload file
+
+    //jQuery('#saveButton').on('click', function () {
+    //    /*
+    //     The following code was prepared in a very fast and furious manner.
+    //     Which means, I quickily "scanned" articles at https://forum.jquery.com/topic/upload-a-file-using-jquery-ajax-function
+    //     to find out how others use JavaScript to "programatically" submit the data
+    //     by using FormData class.
+    //      */
+    //    let collectedDescription = $('#descriptionInput').jqxEditor('val');//Don't use .val(), it will add unusual ? character in front of your text.
+    //    var fileToUpload = new FormData();
+    //    fileToUpload.append('fileInput', $('#fileInput')[0].files[0]);
+    //    fileToUpload.append('description', collectedDescription);
+    //    $.ajax({
+    //        url: '/API/LogManager/SaveFiles',
+    //        data: fileToUpload,
+    //        processData: false,
+    //        contentType: false,
+    //        type: 'POST'
+
+    //    }).done(function (data) {
+    //        console.dir(data);
+    //        new Noty({ text: data.message, type: 'success', layout: 'center' }).show();
+    //        let record = data.record;
+    //        let $tableBodyRecordElement = $('#tableBodyRecord');
+    //        $tableBodyRecordElement.empty();//Clear the child elements in the tbody
+    //        $tableBodyRecordElement.append($('<tr><td>id</td><td>' + record.id + '</td><tr>'));
+    //        $tableBodyRecordElement.append($('<tr><td>studentId</td><td>' + record.studentId + '</td><tr>'));
+    //        $tableBodyRecordElement.append($('<tr><td>createdAt</td><td>' + record.createdAt + '</td><tr>'));
+    //        $tableBodyRecordElement.append($('<tr><td> description</td><td>' + record.description + '</td><tr>'));
+    //        $tableBodyRecordElement.append($('<tr><td>fileExtension</td><td>' + record.fileExtension + '</td><tr>'));
+    //        $tableBodyRecordElement.append($('<tr><td>fileName</td><td>' + record.fileName + '</td><tr>'));
+    //        $tableBodyRecordElement.append($('<tr><td>format</td><td>' + record.format + '</td><tr>'));
+    //        $tableBodyRecordElement.append($('<tr><td>height</td><td>' + record.height + '</td><tr>'));
+    //        $tableBodyRecordElement.append($('<tr><td>width</td><td>' + record.width + '</td><tr>'));
+    //        $tableBodyRecordElement.append($('<tr><td>imageSize</td><td>' + record.imageSize + '</td><tr>'));
+    //        $tableBodyRecordElement.append($('<tr><td>version</td><td>' + record.version + '</td><tr>'));
+    //        $tableBodyRecordElement.append($('<tr><td>publicCloudinaryId</td><td>' + record.publicCloudinaryId + '</td><tr>'));
+    //        $tableBodyRecordElement.append($('<tr><td>resourceType</td><td>' + record.resourceType + '</td><tr>'));
+    //        $tableBodyRecordElement.append($('<tr><td>secureUrl</td><td>' + record.secureUrl + '</td><tr>'));
+    //        $tableBodyRecordElement.append($('<tr><td>url</td><td>' + record.url + '</td><tr>'));
+
+
+    //    }).fail(function (data) {
+    //        if (data.responseJSON) {
+    //            new Noty({ text: data.responseJSON.message, type: 'error', layout: 'center' }).show();
+    //        } else {
+    //            new Noty({ text: 'Unable to save file.', type: 'error', layout: 'center' }).show();
+    //        }
+    //    })
+    //}//end of anonymous function
+
+
+
+    //// AJAX GET to output into brand Dropdown
+    $.ajax({
+        url: '/API/Brand/GetAllBrand',
+        method: 'GET'
+
+    }).done(function (data) {
+        let $tableBodyElement = $('#brandId');
+
+        for (let index = 0; index < data.length; index++) {
+            let $rowElement = null;
+
+            //Update
+            var brandName = data[index].brandName;
+            var brandId = data[index].brandId;
+            console.log(brandName + " " + brandId);
+            $rowElement = $('<option value=' + brandId + '>' + brandName + '</option>');
+            $tableBodyElement.append($rowElement);
+        }
+    }).fail(function (data) {
+        console.dir("HELLO" + data);
+        new Noty({
+            text: data.responseJSON.message, type: 'error',
+            layout: 'center',
+            timeout: 2500
+        }).show();
+    })
+
+    //Validate Form
+    //Validation
+    $('#productForm').validate({
+        rules: {
+            productName: {
+                required: true
+            },
+            productCode: {
+                required: true
+            }
+        },
+        messages: {
+            productName: {
+                required: "Please enter a name"
+            },
+            productCode: {
+                required: "Please enter a code"
+            }
+        },
+        errorPlacement: function (error, element) {
+            if (element.is(':radio')) {
+                error.appendTo(element.parent().parent().next('div'))
+            } else {
+                error.appendTo(element.next('div'));
+            }
+        },
+        submitHandler: function () {
+            console.log("You've clicked submit !");
+
+            //Required Fields
+            let collectedBrand = $('#brandId').val();
+            let collectedProdName = $('#productName').val();
+            let collectedProdCode = $('#productCode').val();
+
+            //Optional Fields
+            let collectedProductDesc = $('#productDesc').val();
+            let collectedProdIng = $('#productIng').val();
+            let collectedPublished = $('#published').val();
+            let collectedProductMinQty = $('#productMinQty').val();
+            let collectedProductQty = $('#productQty').val();
+            let collectedProductGA = $('#productGA').val();
+
+            //Array of Price Arrays
+            let collectedProductWA = $('#productWA').val();
+            let collectedProductWU = $('#productWU').val();
+            let collectedProductPrice = $('#productPrice').val();
+            var collectedPrice = [collectedProductWA, collectedProductWU, collectedProductPrice];
+            var collectedPriceArray = [collectedPrice];
+
+            //Array of Discount Arrays
+            let collectedDiscountName = $('#discountName').val();
+            let collectedDiscountRate = $('#discountRate').val();
+            var collectedDiscount = [collectedDiscountName, collectedDiscountRate];
+            var collectedDiscountArray = [collectedDiscount];
+
+            //function WebFormData(inBrand, inProdName, inProdCode, inProdDesc, inProdIng, inPublished, inProductMinQty, inProductQty, inProductGA, inPrice, inDiscount) {
+            //    this.brandId = inBrand;
+            //    this.prodName = inProdName;
+            //    this.prodCode = inProdCode;
+            //    this.prodDesc = inProdDesc;
+            //    this.prodIng = inProdIng;
+            //    this.published = inPublished;
+            //    this.minQty = inProductMinQty;
+            //    this.prodQty = inProductQty;
+            //    this.GA = inProductGA;
+            //    this.price = inPrice;
+            //    this.discount = inDiscount;
+            //}
+
+            var formData = new FormData();
+            formData.append('fileInput', $('#inputGroupFile01')[0].files[0]);
+            formData.append('brandId', collectedBrand);
+            formData.append('prodName', collectedProdName);
+            formData.append('prodCode', collectedProdCode);
+            formData.append('prodDesc', collectedProductDesc);
+            formData.append('prodIng', collectedProdIng);
+            formData.append('published', collectedPublished);
+            formData.append('minQty', collectedProductMinQty);
+            formData.append('prodQty', collectedProductQty);
+            formData.append('GA', collectedProductGA);
+            formData.append('price', collectedPriceArray);
+            formData.append('discount', collectedDiscountArray);
+
+            console.log("Collected Data: " + collectedBrand + " " + collectedProdName + " " + collectedProdCode + " " + collectedProductDesc
+                + " " + collectedProdIng + " " + collectedPublished + " " + collectedProductMinQty + " " + collectedProductQty + " " + collectedPriceArray
+                + " " + collectedDiscountArray);
+            //let webFormData = new WebFormData(collectedBrand, collectedProdName, collectedProdCode, collectedProductDesc, collectedProdIng, collectedPublished,
+            //    collectedProductMinQty, collectedProductQty, collectedProductGA, collectedPriceArray, collectedDiscountArray);
+            
+
+            $.ajax({
+                method: 'post',
+                url: '/API/Product/AddProduct',
+                data: formData,
+                contentType: false,
+                processData: false,
+                traditional: true,
+            }).done(function (data) {
+                new Noty({
+                    text: data.message, layout: 'center',
+                    type: 'success',
+                    callbacks: {
+                        onClose: function () { window.location.href = "/Product/ProductList" }
+                    }
+                }).show();
+            }).fail(function (data) {
+                console.log(data);
+                new Noty({
+                    text: data.responseJSON.message,
+                    type: 'error',
+                    layout: 'center'
+                }).show();
+            });//end of $ajax().done().fail();
+        }
+    });
+
+</script>

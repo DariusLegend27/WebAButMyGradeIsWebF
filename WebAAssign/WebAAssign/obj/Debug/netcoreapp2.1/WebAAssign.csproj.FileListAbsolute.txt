@@ -82,3 +82,4 @@ C:\TheRealSEP\WebAButMyGradeIsWebF\WebAAssign\WebAAssign\obj\Debug\netcoreapp2.1
 C:\TheRealSEP\WebAButMyGradeIsWebF\WebAAssign\WebAAssign\obj\Debug\netcoreapp2.1\WebAAssign.csproj.CopyComplete
 C:\TheRealSEP\WebAButMyGradeIsWebF\WebAAssign\WebAAssign\obj\Debug\netcoreapp2.1\Razor\Views\Product\ProductList.g.cshtml.cs
 C:\TheRealSEP\WebAButMyGradeIsWebF\WebAAssign\WebAAssign\obj\Debug\netcoreapp2.1\Razor\Views\Product\UpdateProduct.g.cshtml.cs
+C:\TheRealSEP\WebAButMyGradeIsWebF\WebAAssign\WebAAssign\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_LayoutProduct.g.cshtml.cs

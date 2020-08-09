@@ -10,7 +10,8 @@ namespace WebAAssign.Models
     {
         //int variables
         [Key]
-        public int productDetailId { get; set; }
+        public int Id { get; set; }
+        public int prodId { get; set; }
 
         //Decimal Variables
         public decimal weightAmount { get; set; }
@@ -20,7 +21,6 @@ namespace WebAAssign.Models
         public string weightUnit { get; set; }
 
         //Relations
-        public Brand Brand { get; set; }
-        public Product Product {get; set;}
+        public Product product { get; set; }
     }
 }

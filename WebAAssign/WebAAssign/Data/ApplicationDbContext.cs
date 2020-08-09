@@ -71,11 +71,12 @@ namespace WebAAssign.Data
                .WithMany(dr => dr.productDiscountRates)
                .HasForeignKey(pdr => pdr.prodId);
 
+
             // one-to-many relationship between Product and productDetails
             modelBuilder.Entity<productDetail>()
-               .HasOne(pd => pd.Product)
+               .HasOne(pd => pd.product)
                .WithMany(p => p.productDetails)
-               .HasForeignKey(pd => pd.productDetailId);
+               .HasForeignKey(pd => pd.prodId);
         }
     }
 }
