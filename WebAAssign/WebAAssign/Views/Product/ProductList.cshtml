@@ -1,0 +1,191 @@
+﻿@{
+    Layout = "_LayoutAdmin";
+}
+<div class="HeaderMS">
+    <h1 id="TitleAC">Manage Product</h1>
+</div>
+<table class="TableCL">
+    <colgroup>
+        <col style="width:5%">
+        <col style="width:10%">
+        <col style="width:5%">
+        <col style="width:10%">
+        <col style="width:10%">
+        <col style="width:10%">
+        <col style="width:10%">
+        <col style="width:10%">
+        <col style="width:10%">
+        <col style="width:10%">
+    </colgroup>
+
+    <tr class="TableHeaderCL">
+        <th>ID</th>
+        <th>Image</th>
+        <th>Code</th>
+        <th>Name</th>
+        <th>Created At</th>
+        <th>Created By</th>
+        <th>Updated At</th>
+        <th>Updated By</th>
+        <th>Return Home</th>
+        <th>Update</th>
+    </tr>
+
+    <tbody id="tableBody"></tbody>
+</table>
+
+@section Scripts{
+    <script>
+        let table = '.TableCL';
+        let tableBody = '#tableBody';
+        let visibility = true;
+
+        // AJAX GET to output into table
+        $.ajax({
+            url: '/API/Product/GetAllProd',
+            method: 'GET'
+
+        }).done(function (data) {
+            let $tableBodyElement = $('#tableBody');
+
+            for (let index = 0; index < data.length; index++) {
+                let $rowElement = null;
+                let $cellElement = null;
+                let $hyperlinkElement = null;
+
+                $rowElement = $('<tr></tr>');
+
+                //Id
+                var prodId = data[index].prodId;
+                console.log(prodId);
+                $cellElement = $('<td>' + prodId + '</td>')
+                $rowElement.append($cellElement);
+
+                //Image
+                prodImgUrl = data[index].prodImgUrl;
+                console.log(prodImgUrl);
+                $cellElement = $('<td>' + prodImgUrl + '</td>');
+                $rowElement.append($cellElement);
+
+                //Code
+                prodCode = data[index].prodCode;
+                console.log(prodCode);
+                $cellElement = $('<td>' + prodCode + '</td>');
+                $rowElement.append($cellElement);
+                
+                //Name
+                prodName = data[index].prodName;
+                console.log(prodName);
+                $cellElement = $('<td>' + prodName + '</td>');
+                $rowElement.append($cellElement);
+
+                //Created At
+                createdAt = data[index].createdAt;
+                console.log(createdAt);
+                $cellElement = $('<td>' + createdAt + '</td>');
+                $rowElement.append($cellElement);
+
+                //Created By
+                var createdBy = data[index].createdBy;
+                console.log(createdBy);
+                $cellElement = $('<td>' + createdBy + '</td>')
+                $rowElement.append($cellElement);
+
+                //Updated At
+                var updatedAt = data[index].updatedAt;
+                console.log(updatedAt);
+                $cellElement = $('<td>' + updatedAt + '</td>')
+                $rowElement.append($cellElement);
+
+                //Updated By
+                var updatedBy = data[index].updatedBy;
+                console.log(updatedBy);
+                $cellElement = $('<td>' + updatedBy + '</td>')
+                $rowElement.append($cellElement);
+                
+
+                //Manage Brand
+                var brandButton = "";
+                console.log(brandButton);
+                $cellElement = $('<td><button type="button" onclick="myFunction()">Home</button></td>')
+                $rowElement.append($cellElement);
+
+
+                //Update
+                var brandButton = "";
+                console.log(brandButton);
+                $cellElement = $('<td><button type="button"><a href="/Product/UpdateProduct/' + data[index].prodId + '">Update</a></button></td>')
+                $rowElement.append($cellElement);
+                $tableBodyElement.append($rowElement);
+            }
+        }).fail(function (data) {
+            console.dir("HELLO" + data);
+            new Noty({
+                text: data.responseJSON.message, type: 'error',
+                layout: 'center',
+                timeout: 2500
+            }).show();
+        })
+        // Set defaults
+        jQuery.validator.setDefaults({
+            errorElement: 'div',
+            errorClass: 'is-invalid'
+        });
+        // Validate and submit form using AJAX PUT
+        $('#dataForm').validate({
+            rules: {
+                customerAccount: {
+                    required: true
+                }
+            },
+            messages: {
+                customerAccount: {
+                    required: 'Please enter valid name with alphanumerical characters or \'_\',\'-\' or \'\'\' '
+                }
+            },
+            errorPlacement: function (error, element) {
+                if (element.is(':radio')) {
+                    error.appendTo(element.parent().parent().next('div'))
+                } else {
+                    error.appendTo(element.next('div'));
+                }
+            },
+            submitHandler: function () {
+                let collectedAccountName = $('#customerAccount').val();
+                let collectedVisibility = visibility;
+                let webFormData = new WebFormData(collectedAccountName, collectedVisibility);
+                let id = $('#submitButton').attr('data-id');
+
+                $.ajax({
+                    method: 'PUT',
+                    url: '/API/CustomerAccounts/' + id,
+                    data: webFormData,
+                    datatype: 'json',
+                    contentType: 'application/x-www-form-urlencoded'
+                }).done(function (data) {
+                    new Noty({
+                        text: data.message,
+                        type: 'success',
+                        layout: 'center',
+                        timer: 1500
+                    }).show();
+
+                    renderDataWithId(id, "UPDATE");
+                    $('#updateModal').modal('hide');
+                }).fail(function (data) {
+                    new Noty({
+                        text: data.responseJSON.message, type: 'error',
+                        layout: 'center',
+                        timer: 2500
+                    }).show();
+                })
+            }
+        });
+
+        function myFunction() {
+            location.replace("/Home/adminPanel")
+        }
+
+
+    </script>
+}

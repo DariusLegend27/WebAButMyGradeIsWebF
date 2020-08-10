@@ -1,0 +1,99 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - FYP_G5</title>
+
+    <environment include="Development">
+
+        <!-- Font Awesome -->
+        <link href="~/lib/font-awesome/css/all.min.css" rel="stylesheet" />
+        <!-- Bootstrap core CSS -->
+        <link href="~/lib/twitter-bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+
+        <!-- MDB core JavaScript -->
+        <script src="~/lib/mdb/js/mdb.min.js"></script>
+
+        <script src="~/lib/jquery/jquery.min.js"></script>
+        <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+
+
+        <!-- Bootsrap-table core CSS Messes up add assignment alignment-->
+        @*<link href="~/lib/bootstrap-table/bootstrap-table.min.css" rel="stylesheet" />*@
+
+        <!-- jqWidget core CSS -->
+        <link href="~/lib/jqwidgets/styles/jqx.base.css" rel="stylesheet" />
+        <link href="~/lib/jqwidgets/styles/jqx.flat.css" rel="stylesheet" />
+
+        <!-- Bootstrap tooltips -->
+        <script src="~/lib/popper.js/umd/popper.min.js"></script>
+        <!-- Bootstrap core JavaScript -->
+        <script src="~/lib/twitter-bootstrap/js/bootstrap.min.js"></script>
+
+        <!-- MDB bootstrap -->
+        <script src="~/lib/mdb/js/mdb.min.js"></script>
+
+        <!-- jqWidgets core JavaScript for all widgets (large JS file size)-->
+        <script src="~/lib/jqwidgets/jqx-all.js"></script>
+        <script src="~/lib/noty/noty.min.js"></script>
+        <script src="~/lib/moment/moment.min.js"></script>
+        <script src="~/lib/store/store.min.js"></script>
+
+        <link rel="stylesheet" href="~/css/style.css">
+
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    </environment>
+</head>
+<body>
+    <partial name="_CookieConsentPartial" />
+
+    <div class="main_content">
+        @RenderBody()
+
+    </div>
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/twitter-bootstrap/js/bootstrap.min.js"></script>
+        <!-- jQuery validate plugin-->
+        <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+        <script src="~/lib/jquery-validation/dist/additional-methods.js"></script>
+        <!-- Boostrap table core JavaScript -->
+        <script src="~/lib/bootstrap-table/bootstrap-table.min.js"></script>
+
+        <script src="~/js/site.js" asp-append-version="true"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT">
+        </script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+                asp-fallback-src="~/lib/twitter-bootstrap/js/bootstrap.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd">
+        </script>
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+    </environment>
+
+    @RenderSection("Scripts", required: false)
+</body>
+
+
+</html>
+
+<script>
+
+
+
+
+
+</script>
