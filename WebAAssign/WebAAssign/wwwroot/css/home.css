@@ -1,0 +1,17 @@
+﻿
+.page-header, .page-header h4{
+    margin:0;
+}
+.page-header .login{
+    text-align:right;
+}
+.page-header .login a {
+    color:#ffffff;
+    font-size: medium;
+    border-radius:5px;
+    background-color: #1b5be4;
+    padding:8px;
+}
+.page-header .login .a:visited, .page-header .login .a:hover{
+    text-decoration-style:none;
+}

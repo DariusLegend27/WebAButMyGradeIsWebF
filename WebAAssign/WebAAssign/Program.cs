@@ -5,8 +5,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using WebAAssign.Data;
+using WebAAssign.Models;
 
 namespace WebAAssign
 {
@@ -14,6 +18,14 @@ namespace WebAAssign
     {
         public static void Main(string[] args)
         {
+            //var host = CreateWebHostBuilder(args).Build();
+
+            //using (var services = host.Services.CreateScope())
+            //{
+            //    var dbContext = services.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+            //    var userRole = services.ServiceProvider.GetRequiredService<SysUser<IdentityUser>>();
+            //}
+
             CreateWebHostBuilder(args).Build().Run();
         }
 

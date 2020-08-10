@@ -1,0 +1,86 @@
+﻿@model LoginViewModel
+@{
+    ViewBag.Title = "User Login";
+    Layout = "_LayoutLogin";
+}
+
+<div class="login-header">
+    <h2>Login</h2>
+</div>
+
+<div class="login-container">
+    <div class="login-content">
+        <form class="login-form" asp-antiforgery="true" asp-controller="Home" asp-action="adminPanel">
+
+            <div class="user-input form-content">
+                <label for="usernameInput">Username</label>
+                <div class="form-input">
+                    <input type="text" width="200" name="usernameInput" id="usernameInput" value="" placeholder="Username" required />
+                </div>
+            </div>
+
+            <div class="password-input form-content">
+                <label for="passwordInput">Password</label>
+                <div class="form-input">
+                    <input type="password" width="200" name="passwordInput" id="passwordInput" value="" required />
+                </div>
+            </div>
+
+            <div class="form-button col-md-5">
+                <input type="button" class="btn-danger"asp-area="" asp-controller="Home" asp-action="Index" value="Back" />
+                <button type="submit" class="btn-primary" id="submitBtn">Login</button>
+                @if (ViewBag.Message != "")
+                {
+                    <div class="alert-info" id="messageBox">@ViewBag.Message</div>
+                }
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts  {
+    <script>
+     $('#dataForm').validate({ // initialize the plugin and validate form [Not in used yet 7/6/2020 -Husni]
+        rules: {
+            usernameInput: {
+                required: true,
+            },
+            passwordInput: {
+                required: true
+            }
+        }
+    });
+
+        //$('#submitBtn').on('click', function () {
+        //    let collectedUserName = jQuery("#usernameInput").val();
+        //    let collectedPassword = jQuery('#passwordInput').val();
+
+        //    function WebFormData(inUserName, inPassword) {
+        //        this.userName = inUserName;
+        //        this.password = inPassword
+        //    }
+        //    let webFormData = new WebFormData(collectedUserName, collectedPassword);
+
+        //    $.ajax({
+        //        type: 'POST',
+        //        url: '/API/Login/CheckUser',
+        //        data: webFormData,
+        //        datatype: 'application/JSON',
+        //        contentType: 'application/x-www-form-urlencoded; charsetUTF-8'
+
+        //    }).done(function (data) {
+        //        console.dir(data);
+
+
+        //    }).fail(function (data) {
+        //        console.dir(data);
+                
+        //    })
+        //})
+
+        
+        
+
+    </script>
+
+}

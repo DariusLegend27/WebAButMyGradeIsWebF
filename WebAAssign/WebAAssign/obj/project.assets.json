@@ -12569,7 +12569,7 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\asus\\.nuget\\packages\\": {},
+    "C:\\Users\\MSI-PC\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
@@ -12585,7 +12585,7 @@
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\asus\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\MSI-PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -12625,7 +12625,6 @@
             "version": "[2.1.2, )"
           },
           "Microsoft.NETCore.App": {
-            "suppressParent": "All",
             "target": "Package",
             "version": "[2.1.0, )",
             "autoReferenced": true
