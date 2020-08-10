@@ -61,7 +61,7 @@ using WebAAssign.Models;
             WriteLiteral("\r\n<div class=\"HeaderMS\">\r\n    <h1 id=\"TitleAC\">Add Category</h1>\r\n</div>\r\n<div class=\"containerAS\">\r\n    ");
             EndContext();
             BeginContext(142, 1659, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f4bcc6903a054c7c8a7aa7e62f7b79a4", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2c6e2d334c204167939600fe4504f63e", async() => {
                 BeginContext(160, 1634, true);
                 WriteLiteral(@"
         <div class=""row"">
