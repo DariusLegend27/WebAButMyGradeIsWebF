@@ -1,0 +1,25 @@
+﻿.login-header{
+    margin-bottom:20px;
+}
+.login-header h2{
+    font-weight:600;
+}
+
+
+.login-container{
+    margin-left:30px;
+}
+.login-form .form-content label, .login-form .form-content .form-input{
+    display:inline;
+}
+.login-form .form-content{
+    margin:10px;
+}
+.login-form .form-button{
+    margin-left:150px;
+}
+
+
+.login-container{
+    width:100%;
+}

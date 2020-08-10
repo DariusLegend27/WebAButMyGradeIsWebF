@@ -21,7 +21,7 @@ namespace WebAAssign.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=DESKTOP-43ECM87\SQLEXPRESS;Database=WEBAAssign;Trusted_Connection=True;MultipleActiveResultSets=True");
+            optionsBuilder.UseSqlServer(@"Server=DIT-MSI1845192\\SQLEXPRESS;Database=WEBAAssign;Trusted_Connection=True;MultipleActiveResultSets=True");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -12532,23 +12532,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\asus\\.nuget\\packages\\": {},
+    "C:\\Users\\MSI-PC\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\asus\\source\\repos\\WebAAssign\\WebAAssign\\WebAAssign.csproj",
+      "projectUniqueName": "D:\\SP WEBA 2\\CA\\CA2\\WebAButMyGradeIsWebF\\WebAAssign\\WebAAssign\\WebAAssign.csproj",
       "projectName": "WebAAssign",
-      "projectPath": "C:\\Users\\asus\\source\\repos\\WebAAssign\\WebAAssign\\WebAAssign.csproj",
-      "packagesPath": "C:\\Users\\asus\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\asus\\source\\repos\\WebAAssign\\WebAAssign\\obj\\",
+      "projectPath": "D:\\SP WEBA 2\\CA\\CA2\\WebAButMyGradeIsWebF\\WebAAssign\\WebAAssign\\WebAAssign.csproj",
+      "packagesPath": "C:\\Users\\MSI-PC\\.nuget\\packages\\",
+      "outputPath": "D:\\SP WEBA 2\\CA\\CA2\\WebAButMyGradeIsWebF\\WebAAssign\\WebAAssign\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\asus\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\MSI-PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -12584,7 +12584,6 @@
             "version": "[2.1.2, )"
           },
           "Microsoft.NETCore.App": {
-            "suppressParent": "All",
             "target": "Package",
             "version": "[2.1.0, )",
             "autoReferenced": true
