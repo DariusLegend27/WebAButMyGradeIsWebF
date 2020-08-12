@@ -3,19 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+
+using WebAAssign.Data;
+using WebAAssign.Helpers;
+using WebAAssign.Models;
+using WebAAssign.Services;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Authorization;
+
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using WebAAssign.Data;
-using WebAAssign.Helpers;
+using Microsoft.IdentityModel.Tokens;
 
 namespace WebAAssign
 {
@@ -31,13 +36,6 @@ namespace WebAAssign
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddAuthorization(option =>
-            {
-                option.AddPolicy(
-                    "Authorized", policy => policy.RequireClaim("Authorized")
-                    );
-            });
-
             services.Configure<CookiePolicyOptions>(options =>
             {
                 options.CheckConsentNeeded = context => true;
@@ -55,18 +53,27 @@ namespace WebAAssign
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-
             var appSettingsSection = Configuration.GetSection("AppSettings");
             services.Configure<AppSettings>(appSettingsSection);
 
             var appSettings = appSettingsSection.Get<AppSettings>();
-            services.AddAuthentication("MyCookieAuthentication")
-              .AddCookie("MyCookieAuthentication", options =>
-              {
-                  options.AccessDeniedPath = "/Home/Index/";
-                  options.LoginPath = "/Home/Login/";
-              }
-              );
+
+            var key = Encoding.ASCII.GetBytes(appSettings.Secret);
+
+            services.AddAuthentication(("CookieAuthenticationScheme"))
+            .AddCookie("CookieAuthenticationScheme", options =>
+            {
+                 options.ExpireTimeSpan = TimeSpan.FromDays(7);
+                 options.AccessDeniedPath = "/Home/Forbidden/";
+                options.LoginPath = "/Home/Login/";
+            });
+
+            services.AddAntiforgery();
+
+            services.AddScoped<IUserService, UserService>();
+
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
             services.AddDbContext<ApplicationDbContext>();
         }
 
@@ -75,6 +82,11 @@ namespace WebAAssign
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+            }
+            else
+            {
+                app.UseExceptionHandler("/Home/Error");
+                app.UseHsts();
             }
             app.UseAuthentication();
 
@@ -87,7 +99,7 @@ namespace WebAAssign
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=adminPanel}/{id?}");
+                    template: "{controller=Login}/{action=Login}/{id?}");
             });
 
             

@@ -12575,11 +12575,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\TheRealSEP\\WebAButMyGradeIsWebF\\WebAAssign\\WebAAssign\\WebAAssign.csproj",
+      "projectUniqueName": "D:\\SP WEBA 2\\CA\\CA2\\WebAButMyGradeIsWebF\\WebAAssign\\WebAAssign\\WebAAssign.csproj",
       "projectName": "WebAAssign",
-      "projectPath": "C:\\TheRealSEP\\WebAButMyGradeIsWebF\\WebAAssign\\WebAAssign\\WebAAssign.csproj",
-      "packagesPath": "C:\\Users\\asus\\.nuget\\packages\\",
-      "outputPath": "C:\\TheRealSEP\\WebAButMyGradeIsWebF\\WebAAssign\\WebAAssign\\obj\\",
+      "projectPath": "D:\\SP WEBA 2\\CA\\CA2\\WebAButMyGradeIsWebF\\WebAAssign\\WebAAssign\\WebAAssign.csproj",
+      "packagesPath": "C:\\Users\\MSI-PC\\.nuget\\packages\\",
+      "outputPath": "D:\\SP WEBA 2\\CA\\CA2\\WebAButMyGradeIsWebF\\WebAAssign\\WebAAssign\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

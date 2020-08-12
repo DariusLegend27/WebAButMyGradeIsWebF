@@ -321,15 +321,177 @@ namespace WebAAssign.APIs
         }
 
         // PUT api/<controller>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        [HttpPut("UpdateProduct/{id}")]
+        public IActionResult Put(int id, [FromBody]IFormCollection data, IList<IFormFile> fileInput)
         {
+            string customMessage = "";
+            string fileName = "";
+
+            //create Product object
+            Product newProduct = new Product()
+            {
+                productDetails = new List<productDetail>(),
+                productDiscountRates = new List<productDiscountRate>()
+            };
+
+            //Create a new productDetail and productDiscountRate object
+            productDetail foundOneProductDetail = new productDetail();
+            productDiscountRate foundOneProductDiscountRate = new productDiscountRate();
+
+            //Cloudinary account
+            Account account = new Account(
+                "singapore-polytechnic-csc-assignment-ca1",
+                "475859446543313",
+                "CQfmX8pn-pNZOFijjVn-nIhqKqs");
+            Cloudinary cloudinary = new Cloudinary(account);
+
+            discountRate foundOneDiscountRate = new discountRate();
+
+            try
+            {
+                var foundOneProd = Database.Products
+                    .SingleOrDefault(oneProd => oneProd.prodId == id);
+
+                //Required Fields
+                foundOneProd.prodName = data["prodName"];
+                foundOneProd.prodCode = data["prodCode"];
+                foundOneProd.prodImgUrl = null;
+                foundOneProd.brandId = Convert.ToInt32(data["brandId"]);
+                foundOneProd.createdAt = DateTime.Now;
+
+                //Get File Path
+                if (fileInput != null)
+                {
+                    foreach (var file in fileInput)
+                    {
+                        fileName = Path.GetFullPath(file.FileName);
+                    }
+                }
+
+                //Image
+                if (fileName != null)
+                {
+                    var uploadParams = new ImageUploadParams()
+                    {
+                        File = new FileDescription(fileName)
+                    };
+                    var uploadResult = cloudinary.Upload(uploadParams);
+                }
+
+                //Optional Fields
+                foundOneProd.guaranteedAnalysis = data["GA"];
+                foundOneProd.prodDesc = data["prodDesc"];
+                foundOneProd.prodIngredients = data["prodIng"];
+                foundOneProd.updatedBy = data["updatedBy"];
+                foundOneProd.createdBy = data["createdBy"];
+
+                if (data["published"].Count != 0)
+                {
+                    foundOneProd.published = Convert.ToInt32(data["published"]);
+                }
+                foundOneProd.updatedAt = DateTime.Now;
+
+                //List of prices
+                var priceArray = data["price"].ToArray();
+                List<String[]> priceAttributes = new List<String[]>();
+
+
+                //Update Database
+                Database.Update(foundOneProd);
+
+                //Save changess
+                Database.SaveChanges();
+            }
+            catch(Exception ex)
+            {
+                if (ex.InnerException != null)
+                {
+                    if (ex.InnerException.Message.Contains("Product_prodName_UniqueConstraint") == true)
+                    {
+                        customMessage = "Unable to save Product record due to another record having the same name: " + data["prodName"];
+                        return BadRequest(new { message = customMessage });
+                    }
+                    else
+                    {
+                        customMessage = "Unable to save Product record due to internal server errors";
+                        return BadRequest(new { message = customMessage });
+                    }
+                }
+                else
+                {
+                    Debug.WriteLine("THE EXCEPTION IS " + ex);
+                }
+            }
+
+
+            //List of prices
+            var discountArray = data["discount"].ToArray();
+            List<String[]> discountAttributes = new List<String[]>();
+            Debug.WriteLine("PRICE DATA " + discountArray[0] + " AND " + discountArray[0][0]);
+
+            ////For each discount input in discount price
+            for (int i = 0; i < discountArray.Length; i++)
+            {
+                try
+                {
+                    discountAttributes.Add(discountArray[i].Split(","));
+                    for (int j = 0; j < discountAttributes[i].Count(); j++)
+                    {
+                        switch (j)
+                        {
+                            case 0:
+                                foundOneDiscountRate.discName = discountAttributes[i][j];
+                                break;
+                            case 1:
+                                foundOneDiscountRate.discRate = Convert.ToInt32(discountAttributes[i][j]);
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                    Database.Update(foundOneDiscountRate);
+                    Database.SaveChanges();
+
+                    foundOneProductDiscountRate.discountId = foundOneDiscountRate.discId;
+                    foundOneProductDiscountRate.prodId = foundOneProductDiscountRate.prodId;
+
+                    Database.Update(foundOneProductDiscountRate);
+                    Database.SaveChanges();
+                    Debug.WriteLine("CHANGES TO DISCOUNT RATE TABLE SAVED");
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine("DISCOUNT RATE ERROR: " + ex);
+                }
+            }
+            return Ok(new
+            {
+                message = "Updated Brand Record"
+            });
         }
 
         // DELETE api/<controller>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete("DeleteProduct/{id}")]
+        public IActionResult Delete(int id)
         {
+            string customMessage = "";
+
+            try
+            {
+                var foundOneProd = Database.Products
+                    .SingleOrDefault(oneProd => oneProd.prodId == id);
+
+                Database.Products.Remove(foundOneProd);
+
+                Database.SaveChanges();
+            }
+            catch(Exception ex)
+            {
+                customMessage = "Unable to delete product: " + ex;
+                return BadRequest(new { message = customMessage });
+            }
+
+            return Ok(new { message = "Successfully deleted product" });
         }
     }
 }

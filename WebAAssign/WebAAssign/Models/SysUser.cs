@@ -14,7 +14,7 @@ namespace WebAAssign.Models
 
         //String variables
         public string userName { get; set; }
-        public string userPassHash { get; set; }
-        public string userPassSalt { get; set; }
+        public byte[] userPassHash { get; set; }
+        public byte[] userPassSalt { get; set; }
     }
 }
