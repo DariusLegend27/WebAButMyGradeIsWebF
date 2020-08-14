@@ -64,7 +64,7 @@
                 //Image
                 prodImgUrl = data[index].prodImgUrl;
                 console.log(prodImgUrl);
-                $cellElement = $('<td>' + prodImgUrl + '</td>');
+                $cellElement = $('<td><img src="' + prodImgUrl + '" class="img-fluid"></td>');
                 $rowElement.append($cellElement);
 
                 //Code

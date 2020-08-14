@@ -21,6 +21,7 @@ namespace WebAAssign.Data
         public DbSet<productDiscountRate> productDiscountRates { get; set; }
         public DbSet<SysUser> SysUsers { get; set; }
         public DbSet<Visibility> Visibilities { get; set; }
+        public DbSet<LogFile> LogFiles { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

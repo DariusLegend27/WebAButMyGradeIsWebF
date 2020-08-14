@@ -12,6 +12,7 @@ using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
+using Cloudinary;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -20,7 +21,7 @@ namespace WebAAssign.APIs
     [Route("api/[controller]")]
     public class ProductController : Controller
     {
-
+        private const string UPLOAD_PRESET = "upload_to_weba";
         public ApplicationDbContext Database
         {
             get;
@@ -131,14 +132,14 @@ namespace WebAAssign.APIs
         {
             return "value";
         }
-
-
         //Add Category
         [HttpPost("AddProduct")]
-        public IActionResult Post(IFormCollection data, IList<IFormFile> fileInput)
+        public async Task<IActionResult> Post(IFormCollection data, IList<IFormFile> fileInput)
         {
+            //Initialize Variables
             string customMessage = "";
-            string fileName = "";
+            int fileCount = 0;
+            string url= "";
 
             //create Product object
             Product newProduct = new Product()
@@ -147,18 +148,8 @@ namespace WebAAssign.APIs
                 productDiscountRates = new List<productDiscountRate>()
             };
 
-
-            //Cloudinary account
-            Account account = new Account(
-                "singapore-polytechnic-csc-assignment-ca1",
-                "475859446543313",
-                "CQfmX8pn-pNZOFijjVn-nIhqKqs");
-            Cloudinary cloudinary = new Cloudinary(account);
-
+            //Create a new discountRate, productDetail and productDiscountRate object
             discountRate newDiscountRate = new discountRate();
-
-
-            //Create a new productDetail and productDiscountRate object
             productDetail newProductDetail = new productDetail();
             productDiscountRate newProductDiscountRate = new productDiscountRate();
 
@@ -166,27 +157,51 @@ namespace WebAAssign.APIs
             //Required Fields
             newProduct.prodName = data["prodName"];
             newProduct.prodCode = data["prodCode"];
-            newProduct.prodImgUrl = null;
+            
             //newProduct.prodImgUrl = data["prodImgUrl"];
             newProduct.brandId = Convert.ToInt32(data["brandId"]);
             newProduct.createdAt = DateTime.Now;
 
-            //Get File Path
-            if (fileInput != null)
-            {
-                foreach (var file in fileInput) {
-                    fileName = Path.GetFullPath(file.FileName);
-                }
-            }
 
             //Image
-            if (fileName != null) {
-                var uploadParams = new ImageUploadParams()
+            LogFile logFile = new LogFile();
+            foreach (IFormFile oneFile in fileInput)
+            {
+                if (oneFile != null)
                 {
-                    File = new FileDescription(fileName)
-                };
-                var uploadResult = cloudinary.Upload(uploadParams);
+                    var fileName = ContentDispositionHeaderValue
+                                .Parse(oneFile.ContentDisposition)
+                                .FileName
+                                .Trim('"');
+                    string contentType = oneFile.ContentType;
+                    try
+                    {
+                        //http://stackoverflow.com/questions/16392751/unable-to-cast-base-class-data-contract-to-derived-class
+                        logFile = await CloudinaryAPIs.
+                        UploadFileToCloudinary<LogFile>(UPLOAD_PRESET, oneFile.OpenReadStream(),
+                        contentType, fileName);
+                        logFile.Description = data["description"];
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+                    if (logFile.PublicCloudinaryId != "")
+                    {
+                        url = logFile.Url;
+                        Database.LogFiles.Add(logFile);
+                        Database.SaveChanges();
+                        fileCount += 1;
+                    }
+                    else
+                    {
+                        return BadRequest(new { message = "Unable to save file" });
+                    }
+
+                    
+                }//end of checking if there is a file for upload
             }
+            newProduct.prodImgUrl = url;
 
             //Optional Fields
             newProduct.guaranteedAnalysis = data["GA"];
