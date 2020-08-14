@@ -56,7 +56,7 @@ namespace Cloudinary
             long unixTime_Seconds = UnixTime.GetTimeBySeconds();
             string public_id = inFileName;
             //This is quite useful if want to create one folder to insert files into it. For InternshipTrackingSystem, maybe should use the student admission id to do it. But this project does not store student admission id.
-            string folder_name = "xyz"; //If I leave this empty string, sure runtime error will happen
+            string folder_name = "WebA"; //If I leave this empty string, sure runtime error will happen
             // File upload signature to ensure the integrity of the multipart form data 
             // when transporting over the internet
             Dictionary<string, object> imageInformation = new Dictionary<string, object>();
@@ -160,6 +160,7 @@ namespace Cloudinary
                 catch (Exception exp)
                 {
                     // :( die.
+                    Debug.WriteLine("EXCEPTION: "+exp);
                 }
             }
             var imageFile = new TypeOfValue

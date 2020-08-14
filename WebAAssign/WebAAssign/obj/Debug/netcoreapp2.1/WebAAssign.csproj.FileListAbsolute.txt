@@ -46,7 +46,6 @@ C:\TheRealSEP\WebAButMyGradeIsWebF\WebAAssign\WebAAssign\bin\Debug\netcoreapp2.1
 C:\TheRealSEP\WebAButMyGradeIsWebF\WebAAssign\WebAAssign\bin\Debug\netcoreapp2.1\WebAAssign.pdb
 C:\TheRealSEP\WebAButMyGradeIsWebF\WebAAssign\WebAAssign\bin\Debug\netcoreapp2.1\WebAAssign.Views.dll
 C:\TheRealSEP\WebAButMyGradeIsWebF\WebAAssign\WebAAssign\bin\Debug\netcoreapp2.1\WebAAssign.Views.pdb
-C:\TheRealSEP\WebAButMyGradeIsWebF\WebAAssign\WebAAssign\obj\Debug\netcoreapp2.1\WebAAssign.csprojAssemblyReference.cache
 C:\TheRealSEP\WebAButMyGradeIsWebF\WebAAssign\WebAAssign\obj\Debug\netcoreapp2.1\WebAAssign.csproj.CoreCompileInputs.cache
 C:\TheRealSEP\WebAButMyGradeIsWebF\WebAAssign\WebAAssign\obj\Debug\netcoreapp2.1\WebAAssign.RazorAssemblyInfo.cache
 C:\TheRealSEP\WebAButMyGradeIsWebF\WebAAssign\WebAAssign\obj\Debug\netcoreapp2.1\WebAAssign.RazorAssemblyInfo.cs
@@ -67,10 +66,13 @@ C:\TheRealSEP\WebAButMyGradeIsWebF\WebAAssign\WebAAssign\obj\Debug\netcoreapp2.1
 C:\TheRealSEP\WebAButMyGradeIsWebF\WebAAssign\WebAAssign\obj\Debug\netcoreapp2.1\Razor\Views\Home\Index.g.cshtml.cs
 C:\TheRealSEP\WebAButMyGradeIsWebF\WebAAssign\WebAAssign\obj\Debug\netcoreapp2.1\Razor\Views\Home\Privacy.g.cshtml.cs
 C:\TheRealSEP\WebAButMyGradeIsWebF\WebAAssign\WebAAssign\obj\Debug\netcoreapp2.1\Razor\Views\Product\AddProduct.g.cshtml.cs
+C:\TheRealSEP\WebAButMyGradeIsWebF\WebAAssign\WebAAssign\obj\Debug\netcoreapp2.1\Razor\Views\Product\ProductList.g.cshtml.cs
+C:\TheRealSEP\WebAButMyGradeIsWebF\WebAAssign\WebAAssign\obj\Debug\netcoreapp2.1\Razor\Views\Product\UpdateProduct.g.cshtml.cs
 C:\TheRealSEP\WebAButMyGradeIsWebF\WebAAssign\WebAAssign\obj\Debug\netcoreapp2.1\Razor\Views\Shared\Error.g.cshtml.cs
 C:\TheRealSEP\WebAButMyGradeIsWebF\WebAAssign\WebAAssign\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_CookieConsentPartial.g.cshtml.cs
 C:\TheRealSEP\WebAButMyGradeIsWebF\WebAAssign\WebAAssign\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_Layout.g.cshtml.cs
 C:\TheRealSEP\WebAButMyGradeIsWebF\WebAAssign\WebAAssign\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_LayoutAdmin.g.cshtml.cs
+C:\TheRealSEP\WebAButMyGradeIsWebF\WebAAssign\WebAAssign\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_LayoutProduct.g.cshtml.cs
 C:\TheRealSEP\WebAButMyGradeIsWebF\WebAAssign\WebAAssign\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_ValidationScriptsPartial.g.cshtml.cs
 C:\TheRealSEP\WebAButMyGradeIsWebF\WebAAssign\WebAAssign\obj\Debug\netcoreapp2.1\Razor\Views\_ViewImports.g.cshtml.cs
 C:\TheRealSEP\WebAButMyGradeIsWebF\WebAAssign\WebAAssign\obj\Debug\netcoreapp2.1\Razor\Views\_ViewStart.g.cshtml.cs
@@ -80,6 +82,3 @@ C:\TheRealSEP\WebAButMyGradeIsWebF\WebAAssign\WebAAssign\obj\Debug\netcoreapp2.1
 C:\TheRealSEP\WebAButMyGradeIsWebF\WebAAssign\WebAAssign\obj\Debug\netcoreapp2.1\WebAAssign.dll
 C:\TheRealSEP\WebAButMyGradeIsWebF\WebAAssign\WebAAssign\obj\Debug\netcoreapp2.1\WebAAssign.pdb
 C:\TheRealSEP\WebAButMyGradeIsWebF\WebAAssign\WebAAssign\obj\Debug\netcoreapp2.1\WebAAssign.csproj.CopyComplete
-C:\TheRealSEP\WebAButMyGradeIsWebF\WebAAssign\WebAAssign\obj\Debug\netcoreapp2.1\Razor\Views\Product\ProductList.g.cshtml.cs
-C:\TheRealSEP\WebAButMyGradeIsWebF\WebAAssign\WebAAssign\obj\Debug\netcoreapp2.1\Razor\Views\Product\UpdateProduct.g.cshtml.cs
-C:\TheRealSEP\WebAButMyGradeIsWebF\WebAAssign\WebAAssign\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_LayoutProduct.g.cshtml.cs
