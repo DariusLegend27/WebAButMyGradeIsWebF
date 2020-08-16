@@ -13,12 +13,12 @@ namespace AspNetCore
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
-#line 1 "D:\SP WEBA 2\CA\CA2\WebAButMyGradeIsWebF\WebAAssign\WebAAssign\Views\_ViewImports.cshtml"
+#line 1 "C:\TheRealSEP\WebAButMyGradeIsWebF\WebAAssign\WebAAssign\Views\_ViewImports.cshtml"
 using WebAAssign;
 
 #line default
 #line hidden
-#line 2 "D:\SP WEBA 2\CA\CA2\WebAButMyGradeIsWebF\WebAAssign\WebAAssign\Views\_ViewImports.cshtml"
+#line 2 "C:\TheRealSEP\WebAButMyGradeIsWebF\WebAAssign\WebAAssign\Views\_ViewImports.cshtml"
 using WebAAssign.Models;
 
 #line default
@@ -30,7 +30,7 @@ using WebAAssign.Models;
         #pragma warning disable 1998
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
-#line 1 "D:\SP WEBA 2\CA\CA2\WebAButMyGradeIsWebF\WebAAssign\WebAAssign\Views\Product\ProductList.cshtml"
+#line 1 "C:\TheRealSEP\WebAButMyGradeIsWebF\WebAAssign\WebAAssign\Views\Product\ProductList.cshtml"
   
     Layout = "_LayoutAdmin";
 

@@ -82,3 +82,7 @@ C:\TheRealSEP\WebAButMyGradeIsWebF\WebAAssign\WebAAssign\obj\Debug\netcoreapp2.1
 C:\TheRealSEP\WebAButMyGradeIsWebF\WebAAssign\WebAAssign\obj\Debug\netcoreapp2.1\WebAAssign.dll
 C:\TheRealSEP\WebAButMyGradeIsWebF\WebAAssign\WebAAssign\obj\Debug\netcoreapp2.1\WebAAssign.pdb
 C:\TheRealSEP\WebAButMyGradeIsWebF\WebAAssign\WebAAssign\obj\Debug\netcoreapp2.1\WebAAssign.csproj.CopyComplete
+C:\TheRealSEP\WebAButMyGradeIsWebF\WebAAssign\WebAAssign\obj\Debug\netcoreapp2.1\WebAAssign.csprojAssemblyReference.cache
+C:\TheRealSEP\WebAButMyGradeIsWebF\WebAAssign\WebAAssign\obj\Debug\netcoreapp2.1\Razor\Views\Login\Authenticate.g.cshtml.cs
+C:\TheRealSEP\WebAButMyGradeIsWebF\WebAAssign\WebAAssign\obj\Debug\netcoreapp2.1\Razor\Views\Login\Login.g.cshtml.cs
+C:\TheRealSEP\WebAButMyGradeIsWebF\WebAAssign\WebAAssign\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_LayoutLogin.g.cshtml.cs
